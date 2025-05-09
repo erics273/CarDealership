@@ -72,15 +72,15 @@ public class DealershipFileManager {
 
             // Write one line for each vehicle
             ArrayList<Vehicle> inventory = dealership.getAllVehicles();
-            for (Vehicle v : inventory) {
-                String line = v.getVin() + "|" +
-                        v.getYear() + "|" +
-                        v.getMake() + "|" +
-                        v.getModel() + "|" +
-                        v.getVehicleType() + "|" +
-                        v.getColor() + "|" +
-                        v.getOdometer() + "|" +
-                        v.getPrice();
+            for (Vehicle vehicle : inventory) {
+                String line = vehicle.getVin() + "|" +
+                        vehicle.getYear() + "|" +
+                        vehicle.getMake() + "|" +
+                        vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" +
+                        vehicle.getColor() + "|" +
+                        vehicle.getOdometer() + "|" +
+                        vehicle.getPrice();
                 fileWriter.write(line);
                 fileWriter.newLine();
             }
