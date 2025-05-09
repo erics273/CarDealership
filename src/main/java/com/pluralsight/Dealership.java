@@ -43,9 +43,9 @@ public class Dealership {
     // Returns vehicles between the given price range
     public ArrayList<Vehicle> getVehiclesByPrice(double min, double max) {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle v : inventory) {
-            if (v.getPrice() >= min && v.getPrice() <= max) {
-                results.add(v);
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getPrice() >= min && vehicle.getPrice() <= max) {
+                results.add(vehicle);
             }
         }
         return results;
@@ -54,9 +54,9 @@ public class Dealership {
     // Returns vehicles that match both make and model
     public ArrayList<Vehicle> getVehiclesByMakeModel(String make, String model) {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle v : inventory) {
-            if (v.getMake().equalsIgnoreCase(make) && v.getModel().equalsIgnoreCase(model)) {
-                results.add(v);
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)) {
+                results.add(vehicle);
             }
         }
         return results;
@@ -65,9 +65,9 @@ public class Dealership {
     // Returns vehicles within the year range provided
     public ArrayList<Vehicle> getVehiclesByYear(int minYear, int maxYear) {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle v : inventory) {
-            if (v.getYear() >= minYear && v.getYear() <= maxYear) {
-                results.add(v);
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getYear() >= minYear && vehicle.getYear() <= maxYear) {
+                results.add(vehicle);
             }
         }
         return results;
@@ -76,9 +76,9 @@ public class Dealership {
     // Returns vehicles matching the specified color
     public ArrayList<Vehicle> getVehiclesByColor(String color) {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle v : inventory) {
-            if (v.getColor().equalsIgnoreCase(color)) {
-                results.add(v);
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getColor().equalsIgnoreCase(color)) {
+                results.add(vehicle);
             }
         }
         return results;
@@ -87,9 +87,9 @@ public class Dealership {
     // Returns vehicles within the specified mileage range
     public ArrayList<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage) {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle v : inventory) {
-            if (v.getOdometer() >= minMileage && v.getOdometer() <= maxMileage) {
-                results.add(v);
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getOdometer() >= minMileage && vehicle.getOdometer() <= maxMileage) {
+                results.add(vehicle);
             }
         }
         return results;
@@ -98,9 +98,9 @@ public class Dealership {
     // Returns vehicles that match the vehicle type
     public ArrayList<Vehicle> getVehiclesByType(String type) {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
-        for (Vehicle v : inventory) {
-            if (v.getVehicleType().equalsIgnoreCase(type)) {
-                results.add(v);
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVehicleType().equalsIgnoreCase(type)) {
+                results.add(vehicle);
             }
         }
         return results;
