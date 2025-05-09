@@ -148,7 +148,6 @@ public class UserInterface {
     public static void processAddVehicleRequest() {
         Scanner scanner = new Scanner(System.in);
 
-        // Prompt user for all fields of a new vehicle
         System.out.print("Enter VIN: ");
         int vin = scanner.nextInt();
         scanner.nextLine();
@@ -175,11 +174,9 @@ public class UserInterface {
         System.out.print("Enter price: ");
         double price = scanner.nextDouble();
 
-        // Create the vehicle and add it to the dealership
         Vehicle newVehicle = new Vehicle(vin, year, make, model, type, color, mileage, price);
         dealership.addVehicle(newVehicle);
 
-        // Save updated inventory
         DealershipFileManager dfm = new DealershipFileManager();
         dfm.saveDealership(dealership);
 
@@ -192,18 +189,25 @@ public class UserInterface {
         System.out.print("Enter VIN of vehicle to remove: ");
         int vin = scanner.nextInt();
 
-        // Find vehicle with matching VIN
-        Vehicle toRemove = null;
-        for (Vehicle v : dealership.getAllVehicles()) {
-            if (v.getVin() == vin) {
-                toRemove = v;
+        Vehicle vehicleToRemove = null;
+        for (Vehicle currentVehicle : dealership.getAllVehicles()) {
+            if (currentVehicle.getVin() == vin) {
+                vehicleToRemove = currentVehicle;
                 break;
             }
         }
 
-        // Remove vehicle and save to file
-        if (toRemove != null) {
-            dealership.removeVehicle(toRemove);
+        // Example of equivalent long form loop:
+        // for (int index = 0; index < dealership.getAllVehicles().size(); index++) {
+        //     Vehicle currentVehicle = dealership.getAllVehicles().get(index);
+        //     if (currentVehicle.getVin() == vin) {
+        //         vehicleToRemove = currentVehicle;
+        //         break;
+        //     }
+        // }
+
+        if (vehicleToRemove != null) {
+            dealership.removeVehicle(vehicleToRemove);
             DealershipFileManager dfm = new DealershipFileManager();
             dfm.saveDealership(dealership);
             System.out.println("Vehicle removed successfully.");
@@ -213,13 +217,20 @@ public class UserInterface {
     }
 
     // Utility method to display a list of vehicles, or a message if empty
-    private static void displayVehicles(ArrayList<Vehicle> vehicles) {
-        if (vehicles.isEmpty()) {
+    private static void displayVehicles(ArrayList<Vehicle> vehicleList) {
+        if (vehicleList.isEmpty()) {
             System.out.println("No vehicles found.");
         } else {
-            for (Vehicle v : vehicles) {
-                System.out.println(v);
+            for (Vehicle currentVehicle : vehicleList) {
+                System.out.println(currentVehicle);
             }
+
+            // Example of equivalent long form loop:
+            // for (int index = 0; index < vehicleList.size(); index++) {
+            //     Vehicle currentVehicle = vehicleList.get(index);
+            //     System.out.println(currentVehicle);
+            // }
         }
     }
 }
+
