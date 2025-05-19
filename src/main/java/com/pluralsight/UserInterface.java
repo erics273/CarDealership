@@ -236,15 +236,22 @@ public class UserInterface {
         }
     }
 
+    //deal with selling or leasing
     private static void handleSellOrLease() {
+        //create the scanner to capture user input
         Scanner scanner = new Scanner(System.in);
         try {
+
+            //load up an instance of the contract file manager so we can save contracts
             ContractFileManager contractFileManager = new ContractFileManager();
 
+            //start capturing user info
             System.out.print("Enter VIN of the vehicle: ");
             int vin = Integer.parseInt(scanner.nextLine());
 
+            //see if we can find the vehicle by vin
             Vehicle vehicle = dealership.getVehicleByVin(vin);
+            //if we cant find it, let the user know and go back to the previous menu
             if (vehicle == null) {
                 System.out.println("Vehicle not found.");
                 return;
@@ -259,28 +266,33 @@ public class UserInterface {
             System.out.print("Is this a Sale or Lease? (Enter 'sale' or 'lease'): ");
             String type = scanner.nextLine().trim().toLowerCase();
 
-            String date = LocalDate.now().toString();
+            //get the date for the contract and start building the sale/lease contract
+            LocalDate date = LocalDate.now();
             Contract contract = null;
 
             if (type.equals("sale")) {
                 System.out.print("Is this financed? (yes/no): ");
                 boolean financed = scanner.nextLine().trim().equalsIgnoreCase("yes");
-                contract = new SalesContract(date, name, email, vehicle, financed);
+                contract = new SalesContract(date.toString(), name, email, vehicle, financed);
             } else if (type.equals("lease")) {
-                int currentYear = LocalDate.now().getYear();
+                int currentYear = date.getYear();
                 if (vehicle.getYear() <= currentYear - 3) {
                     System.out.println("Vehicle is too old for a lease (must be 3 years or newer). Returning to menu.");
                     return;
                 }
-                contract = new LeaseContract(date, name, email, vehicle);
+                contract = new LeaseContract(date.toString(), name, email, vehicle);
             } else {
                 System.out.println("Invalid contract type. Returning to menu.");
                 return;
             }
 
+            //save the contract
             contractFileManager.saveContract(contract);
+
+            //remove the vehicle from inventory
             dealership.removeVehicle(vehicle);
 
+            //update the dealership inventory
             DealershipFileManager dfm = new DealershipFileManager();
             dfm.saveDealership(dealership);
 
