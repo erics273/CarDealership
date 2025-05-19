@@ -95,6 +95,16 @@ public class Dealership {
         return results;
     }
 
+    // Returns vehicle by vin
+    public Vehicle getVehicleByVin(int vin) {
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVin() == vin) {
+                return vehicle;
+            }
+        }
+        return null;
+    }
+
     // Returns vehicles that match the vehicle type
     public ArrayList<Vehicle> getVehiclesByType(String type) {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
